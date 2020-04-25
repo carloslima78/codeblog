@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <title>MyCodeBlog</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <header>
+        <!-- Bootstrap Navbar -->
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1" style="font-wheight: bold;">MyCodeBlog</span>
+            <a href="/newpost" class="btn btn-primary" role="button">Novo Post</a>
+        </nav>
+    </header>
+
+<section>
+    <div class="container" style="width: 60%; padding-bottom: 30px;">
+        <br>
+        <!-- Bootstrap Breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Posts</li>
+            </ol>
+        </nav>
+
+        <!-- Bootstrap Card -->
+        <div class="card shadow-sm bg-white rounded" style="margin-top: 20px;" th:each="post : ${posts}">
+            <div class="card-body">
+                <p class="card-subtitle mb-2 text-muted" style="font-size: 0.8rem;">
+                    <span th:text="${post.autor}"></span>
+                    <span th:text="${post.data}"></span>
+                </p>
+
+                <a th:href="${(#mvc.url('CBC#getPostsDetail').arg(0, post.id)).build()}"><h4 class="card-title" style="font-weight: bold; color black; padding-top: 5px"><span th:text="${post.titulo}"></span></h4></a>
+
+                <p class="card-text"><span th:utext="${#strings.abbreviate(post.texto,400)}"></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>

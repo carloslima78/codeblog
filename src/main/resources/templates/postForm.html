@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <title>MyCodeBlog</title>
+
+    <!-- Importa Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Importa ícones do Google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+    <!-- Componente para formatação de texto "Summernote" -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+
+</head>
+
+<body>
+
+<header>
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1" style="font-wheight: bold;">MyCodeBlog</span>
+    </nav>
+</header>
+
+<section>
+
+    <div class="container" style="width: 60%; padding-bottom: 30px;">
+        <br>
+        <!-- Bootstrap Breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page"><a href="/posts">Posts</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Post</li>
+            </ol>
+        </nav>
+
+        <div>
+            <!-- Aqui será apresentado o formulário mensagemValidacao.html com a mensagem de alerta de validação da model caso necessário. -->
+            <th:block th:include="mensagemValidacao"></th:block>
+            <form method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="titulo" placeholder="Título *">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="autor" placeholder="Autor *">
+                </div>
+
+                <!-- Recebe o id summernote para abstrair as funcionalidades do componente Summernote-->
+                <textarea id="summernote" type="text" class="form-control" name="texto" placeholder="Texto *"></textarea>
+
+                <small class="form-text text-muted">(*) Campos obrigatórios</small>
+
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Publicar</button>
+                <a href="/posts" class="btn btn-light" role="button" style="margin-top: 10px;">Cancelar</a>
+                <!--<button type="submit" class="btn" style="margin-top: 10px;">Cancelar</button>-->
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Script para configurar o componente Summernote, terá o id "summernote" para ser atribuído ao input text -->
+<script>
+    $('#summernote').summernote({
+        placeholder: 'Texto *',
+        tabsize: 2,
+        height: 200
+    });
+</script>
+
+</body>
+
+</html>
